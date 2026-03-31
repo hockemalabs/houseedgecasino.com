@@ -13,33 +13,33 @@
       padding: 0;
     }
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: auto;
       padding: 40px 20px;
     }
     h1 {
       font-size: 36px;
       margin-bottom: 10px;
+      text-align: center;
     }
     h2 {
-      margin-top: 40px;
+      margin-top: 50px;
       border-bottom: 1px solid #1e293b;
       padding-bottom: 8px;
     }
     p {
       color: #cbd5e1;
       line-height: 1.6;
-    }
-    .hero {
       text-align: center;
-      margin-bottom: 40px;
     }
     .tagline {
       font-size: 18px;
       color: #94a3b8;
+      margin-bottom: 20px;
     }
     .buttons {
-      margin-top: 25px;
+      text-align: center;
+      margin-top: 20px;
     }
     a.button {
       display: inline-block;
@@ -58,10 +58,44 @@
       color: #fff;
       border: 1px solid #334155;
     }
+
+    /* Screenshot section */
+    .screenshots {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+    }
+
+    .screenshots img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease;
+    }
+
+    .screenshots img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Mobile scroll feel */
+    @media (max-width: 600px) {
+      .screenshots {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        padding-bottom: 10px;
+      }
+      .screenshots img {
+        min-width: 70%;
+      }
+    }
+
     ul {
       color: #cbd5e1;
       line-height: 1.6;
     }
+
     footer {
       margin-top: 60px;
       font-size: 12px;
@@ -73,16 +107,25 @@
 <body>
   <div class="container">
 
-    <div class="hero">
-      <h1>House Edge Casino</h1>
-      <p class="tagline">
-        The smartest way to learn casino games — no real money, just fun.
-      </p>
+    <h1>House Edge Casino 🎰</h1>
+    <p class="tagline">
+      The smartest way to learn casino games — no real money, just fun.
+    </p>
 
-      <div class="buttons">
-        <a class="button primary" href="support.html">Support</a>
-        <a class="button secondary" href="privacypolicy.html">Privacy Policy</a>
-      </div>
+    <div class="buttons">
+      <a class="button primary" href="support.html">Support</a>
+      <a class="button secondary" href="privacypolicy.html">Privacy Policy</a>
+    </div>
+
+    <h2>Screenshots</h2>
+    <div class="screenshots">
+      <img src="images/ss1.png" alt="Screenshot 1">
+      <img src="images/ss2.png" alt="Screenshot 2">
+      <img src="images/ss3.png" alt="Screenshot 3">
+      <img src="images/ss4.png" alt="Screenshot 4">
+      <img src="images/ss5.png" alt="Screenshot 5">
+      <img src="images/ss6.png" alt="Screenshot 6">
+      <img src="images/ss7.png" alt="Screenshot 7">
     </div>
 
     <h2>About the Game</h2>
@@ -92,17 +135,12 @@
       and play smarter.
     </p>
 
-    <p>
-      Whether you're learning blackjack basic strategy or refining your video poker game,
-      House Edge gives you the tools to understand the math behind every bet.
-    </p>
-
     <h2>Games Included</h2>
     <ul>
       <li><strong>Blackjack</strong> — Vegas-style rules with real-time strategy guidance</li>
-      <li><strong>Slots</strong> — 5-reel video slots with free spins, wilds, and bonus features</li>
-      <li><strong>Roulette</strong> — American roulette with full betting options and tutorials</li>
-      <li><strong>Video Poker</strong> — Classic hands with optimal play strategy</li>
+      <li><strong>Slots</strong> — 5-reel video slots with free spins and bonus features</li>
+      <li><strong>Roulette</strong> — American roulette with full betting options</li>
+      <li><strong>Video Poker</strong> — Classic hands with optimal strategy</li>
     </ul>
 
     <h2>Features</h2>
@@ -113,12 +151,6 @@
       <li>Game Center leaderboards and achievements</li>
       <li>No real money — purely for fun and education</li>
     </ul>
-
-    <h2>Important Note</h2>
-    <p>
-      House Edge Casino does not use real money gambling. This app is for entertainment
-      and educational purposes only.
-    </p>
 
     <footer>
       © 2026 Jeff Hockema
