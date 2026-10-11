@@ -1,446 +1,498 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>House Edge Casino</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #0b1a2a, #020617);
-      color: #ffffff;
-      margin: 0;
-      padding: 0;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Edge Casino — Free Casino Simulator &amp; Strategy Trainer for iPhone</title>
+  <meta name="description" content="Learn blackjack, video poker, roulette, and slots with real casino odds and real-time strategy hints. House Edge Casino is a free iOS casino simulator with no real-money gambling, no ads, and no coin packs." />
+  <meta name="keywords" content="casino simulator, blackjack trainer, blackjack basic strategy app, video poker trainer, roulette simulator, free slots app, learn casino games, no real money casino game, iOS casino game" />
+  <meta name="theme-color" content="#0c0a14" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://houseedgecasino.com/" />
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/icon-192.png" />
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="apple-itunes-app" content="app-id=6758695813" />
 
-    h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="House Edge Casino" />
+  <meta property="og:title" content="House Edge Casino — Learn to beat the house, without betting a dime" />
+  <meta property="og:description" content="A realistic casino simulator for iPhone and iPad with blackjack, video poker, roulette, and slots. Real odds, real-time strategy coaching, no real money." />
+  <meta property="og:url" content="https://houseedgecasino.com/" />
+  <meta property="og:image" content="https://houseedgecasino.com/assets/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="House Edge Casino app logo with the tagline Learn to beat the house" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="House Edge Casino — Free Casino Simulator &amp; Strategy Trainer" />
+  <meta name="twitter:description" content="Blackjack, video poker, roulette, and slots with real odds and real-time strategy hints. Free on the App Store." />
+  <meta name="twitter:image" content="https://houseedgecasino.com/assets/img/og-image.jpg" />
 
-    h2 {
-      margin-top: 50px;
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 8px;
-    }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="/assets/css/site.css" />
+  <link rel="preload" as="image" href="/assets/img/screens/game-selection.webp" />
 
-    p {
-      color: #cbd5e1;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .tagline {
-      font-size: 18px;
-      color: #94a3b8;
-      margin-bottom: 20px;
-    }
-
-    .buttons {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    a.button {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 20px;
-      margin: 5px;
-      border-radius: 10px;
-      font-weight: 600;
-    }
-
-    .primary {
-      background: #ffd700;
-      color: #000;
-    }
-
-    .secondary {
-      background: #1e293b;
-      color: #fff;
-      border: 1px solid #334155;
-    }
-
-    .screenshot-section {
-      margin-top: 30px;
-    }
-
-    .carousel-shell {
-      position: relative;
-      padding: 0 52px;
-    }
-
-    .carousel-viewport {
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .carousel-track {
-      display: flex;
-      gap: 16px;
-      transition: transform 0.6s ease;
-      will-change: transform;
-    }
-
-    .screenshot-card {
-      flex: 0 0 auto;
-      width: 100%;
-    }
-
-    .carousel-track img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 18px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    .carousel-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      border: 1px solid #334155;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      color: #ffffff;
-      font-size: 22px;
-      line-height: 1;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease, opacity 0.2s ease;
-      z-index: 2;
-    }
-
-    .carousel-button:hover {
-      background: rgba(30, 41, 59, 0.98);
-    }
-
-    .carousel-button:disabled {
-      opacity: 0.35;
-      cursor: default;
-    }
-
-    .carousel-button.prev {
-      left: 0;
-    }
-
-    .carousel-button.next {
-      right: 0;
-    }
-
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .carousel-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #475569;
-      border: 0;
-      padding: 0;
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-
-    .carousel-dot.active {
-      background: #ffd700;
-      transform: scale(1.2);
-    }
-
-    ul {
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-
-    footer {
-      margin-top: 60px;
-      padding-top: 24px;
-      border-top: 1px solid #1e293b;
-      font-size: 13px;
-      color: #64748b;
-      text-align: center;
-    }
-    
-    footer a {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s ease, text-shadow 0.2s ease;
-    }
-    
-    footer a:hover {
-      color: #ffd700;
-      text-shadow: 0 0 8px rgba(255, 215, 0, 0.25);
-    }
-
-    @media (max-width: 640px) {
-      .carousel-shell {
-        padding: 0 42px;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MobileApplication",
+        "@id": "https://houseedgecasino.com/#app",
+        "name": "House Edge Casino",
+        "alternateName": "House Edge - Casino Games",
+        "url": "https://houseedgecasino.com/",
+        "description": "A realistic iOS casino simulator with blackjack, video poker, roulette, and slots. Real odds, real-time strategy hints, five visual themes, and no real-money gambling.",
+        "operatingSystem": "iOS",
+        "applicationCategory": "GameApplication",
+        "applicationSubCategory": "Casino",
+        "installUrl": "https://apps.apple.com/us/app/house-edge-casino/id6758695813",
+        "downloadUrl": "https://apps.apple.com/us/app/house-edge-casino/id6758695813",
+        "image": "https://houseedgecasino.com/assets/img/app-icon-512.png",
+        "screenshot": [
+          "https://houseedgecasino.com/assets/img/screens/game-selection.webp",
+          "https://houseedgecasino.com/assets/img/screens/blackjack-strategy-hint.webp",
+          "https://houseedgecasino.com/assets/img/screens/roulette-wheel.webp",
+          "https://houseedgecasino.com/assets/img/screens/slots-spin.webp"
+        ],
+        "offers": [
+          { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free download. All four games and the Classic Las Vegas theme." },
+          { "@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Full Version Unlock: all five themes, no bankroll limits, reset balance to $100 anytime. One-time purchase." }
+        ],
+        "contentRating": "17+",
+        "author": { "@id": "https://houseedgecasino.com/#org" },
+        "publisher": { "@id": "https://houseedgecasino.com/#org" }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://houseedgecasino.com/#org",
+        "name": "Hockema Labs LLC",
+        "url": "https://hockemalabs.com/",
+        "logo": "https://houseedgecasino.com/assets/img/app-icon-512.png",
+        "email": "support@houseedgecasino.com"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://houseedgecasino.com/#website",
+        "url": "https://houseedgecasino.com/",
+        "name": "House Edge Casino",
+        "publisher": { "@id": "https://houseedgecasino.com/#org" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is House Edge Casino real-money gambling?", "acceptedAnswer": { "@type": "Answer", "text": "No. House Edge Casino is a simulated casino for entertainment and education only. No real money is wagered or won, and nothing in the app can be cashed out." } },
+          { "@type": "Question", "name": "Is the app free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. House Edge Casino is free to download and play, with all four games included. An optional one-time $4.99 Full Version Unlock adds all five visual themes, removes bankroll limits, and lets you reset your balance to $100 anytime. There are no subscriptions, no coin packs, and no ads." } },
+          { "@type": "Question", "name": "Are the odds real?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every game uses accurate casino rules and payouts, and outcomes are truly random. Blackjack uses a six-deck Vegas shoe, roulette is American double-zero, video poker is 9/6 Jacks or Better, and slots offer a realistic Vegas odds mode alongside a Fun mode." } },
+          { "@type": "Question", "name": "Which devices are supported?", "acceptedAnswer": { "@type": "Answer", "text": "House Edge Casino runs on iPhone and iPad and is available on the App Store. Family Sharing is supported for the Full Version Unlock." } },
+          { "@type": "Question", "name": "Does House Edge Casino collect my data?", "acceptedAnswer": { "@type": "Answer", "text": "No. The app does not collect personal data, does not use third-party analytics or ad networks, and stores your progress locally on your device. Game Center, if enabled, is managed by Apple." } }
+        ]
       }
-
-      .carousel-button {
-        width: 34px;
-        height: 34px;
-        font-size: 18px;
-      }
-    }
-  </style>
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>House Edge Casino</h1>
-    <p class="tagline">
-      The smartest way to learn casino games — no real money, just fun.
-    </p>
 
-    <div class="screenshot-section">
-      <div class="carousel-shell">
-        <button class="carousel-button prev" id="carouselPrev" aria-label="Previous screenshots">‹</button>
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <a class="brand" href="/" aria-label="House Edge Casino home">
+        <img src="/assets/img/app-icon-160.webp" width="38" height="38" alt="" />
+        <span>House <span class="edge">Edge</span> Casino</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#games">Games</a></li>
+        <li><a href="/#learn">Learn Mode</a></li>
+        <li><a href="/#themes">Themes</a></li>
+        <li><a href="/guides/">Strategy Guides</a></li>
+        <li><a href="/support.html">Support</a></li>
+        <li><a class="nav-cta" href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" rel="noopener">Download Free</a></li>
+      </ul>
+    </div>
+  </nav>
 
-        <div class="carousel-viewport" id="carouselViewport">
-          <div class="carousel-track" id="carouselTrack">
-            <div class="screenshot-card"><img src="images/ss1.png" alt="House Edge Casino screenshot 1"></div>
-            <div class="screenshot-card"><img src="images/ss2.png" alt="House Edge Casino screenshot 2"></div>
-            <div class="screenshot-card"><img src="images/ss3.png" alt="House Edge Casino screenshot 3"></div>
-            <div class="screenshot-card"><img src="images/ss4.png" alt="House Edge Casino screenshot 4"></div>
-            <div class="screenshot-card"><img src="images/ss5.png" alt="House Edge Casino screenshot 5"></div>
-            <div class="screenshot-card"><img src="images/ss6.png" alt="House Edge Casino screenshot 6"></div>
-            <div class="screenshot-card"><img src="images/ss7.png" alt="House Edge Casino screenshot 7"></div>
+  <main>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow reveal in">Free on the App Store · iPhone &amp; iPad</span>
+          <img class="hero-logo reveal in" src="/assets/img/logo.webp" width="1100" height="600" alt="House Edge Casino" fetchpriority="high" />
+          <h1 class="reveal in d1">Learn to beat the house. <span>Without betting a dime.</span></h1>
+          <p class="lede reveal in d2">
+            House Edge Casino is a realistic casino simulator with blackjack, video poker, roulette, and slots.
+            Real Vegas rules, true random odds, and a built-in coach that shows you the optimal play on every hand.
+            No real money. No ads. No coin packs.
+          </p>
+          <div class="cta-row reveal in d3">
+            <a class="btn btn-store" href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" rel="noopener" aria-label="Download House Edge Casino on the App Store">
+              <img src="/assets/img/app-store-badge.svg" width="180" height="54" alt="Download on the App Store" />
+            </a>
+            <a class="btn btn-ghost" href="#games">
+              Explore the games
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </a>
+          </div>
+          <ul class="chips reveal in d3" aria-label="Highlights">
+            <li>No real-money gambling</li>
+            <li>True random outcomes</li>
+            <li>Real-time strategy hints</li>
+            <li>One-time $4.99 unlock, no subscriptions</li>
+          </ul>
+        </div>
+        <div class="hero-visual reveal in d2">
+          <div class="phone">
+            <img src="/assets/img/screens/game-selection.webp" srcset="/assets/img/screens/game-selection-360.webp 360w, /assets/img/screens/game-selection.webp 720w" sizes="(max-width: 760px) 78vw, 320px" width="720" height="1564" alt="House Edge Casino game selection screen showing Blackjack, Video Poker, Roulette, and Slots with their house edge" />
+          </div>
+          <img class="phone-float a" src="/assets/img/chip-100.webp" width="84" height="84" alt="" aria-hidden="true" />
+          <img class="phone-float b" src="/assets/img/chip-25.webp" width="72" height="72" alt="" aria-hidden="true" />
+          <img class="phone-float c" src="/assets/img/chip-5.webp" width="58" height="58" alt="" aria-hidden="true" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="wrap stats-grid">
+        <div class="stat reveal"><span class="n">4</span><span class="l">Classic casino games</span></div>
+        <div class="stat reveal d1"><span class="n">5</span><span class="l">Visual themes with their own art &amp; audio</span></div>
+        <div class="stat reveal d2"><span class="n">45</span><span class="l">Achievements and Game Center leaderboards</span></div>
+        <div class="stat reveal d3"><span class="n">$0</span><span class="l">Real money at risk, ever</span></div>
+      </div>
+    </div>
+
+    <!-- Games -->
+    <section id="games">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">The games</span>
+          <h2>Four casino classics, played by the real rules</h2>
+          <p>Every table and machine uses accurate odds and payouts. No rigged decks, no stacked wheels, and no gimmicks that keep you spinning.</p>
+        </div>
+        <div class="grid grid-2">
+
+          <article class="card game-card reveal">
+            <div class="game-top">
+              <img class="game-icon" src="/assets/img/games/blackjack.webp" width="64" height="64" alt="" />
+              <div><h3>Blackjack</h3><span class="edge-tag">~0.5% house edge with optimal play</span></div>
+            </div>
+            <p>Six-deck Vegas rules with a live strategy coach. Learn exactly when to hit, stand, split, and double down, and why.</p>
+            <ul>
+              <li>Dealer hits soft 17, double after split, split any 10-value cards</li>
+              <li>Real-time hints with bust probabilities and explanations</li>
+              <li>Built-in basic strategy chart and three learning levels</li>
+            </ul>
+            <a class="more" href="/blackjack.html">Blackjack trainer details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+
+          <article class="card game-card reveal d1">
+            <div class="game-top">
+              <img class="game-icon" src="/assets/img/games/video-poker.webp" width="64" height="64" alt="" />
+              <div><h3>Video Poker</h3><span class="edge-tag">9/6 Jacks or Better · 99.54% return</span></div>
+            </div>
+            <p>The full-pay Jacks or Better machine serious players look for, with optimal hold recommendations for every hand pattern.</p>
+            <ul>
+              <li>Expected-return math for each hold decision</li>
+              <li>4,000-coin Royal Flush bonus at max bet</li>
+              <li>Strategy explanations that build real skill</li>
+            </ul>
+            <a class="more" href="/video-poker.html">Video poker trainer details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+
+          <article class="card game-card reveal d2">
+            <div class="game-top">
+              <img class="game-icon" src="/assets/img/games/roulette.webp" width="64" height="64" alt="" />
+              <div><h3>Roulette</h3><span class="edge-tag">American double-zero · 5.26% house edge</span></div>
+            </div>
+            <p>A physics-based wheel and a complete betting layout. Learn every bet type, its payout, and what it really costs you.</p>
+            <ul>
+              <li>Straight, split, street, corner, line, column, dozen, and even-money bets</li>
+              <li>Physics wheel simulation running at 120 updates per second</li>
+              <li>Tutorials covering payouts and house edge for every wager</li>
+            </ul>
+            <a class="more" href="/roulette.html">Roulette simulator details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+
+          <article class="card game-card reveal d3">
+            <div class="game-top">
+              <img class="game-icon" src="/assets/img/games/slots.webp" width="64" height="64" alt="" />
+              <div><h3>Slots</h3><span class="edge-tag">5 reels · 25 paylines · Vegas or Fun odds</span></div>
+            </div>
+            <p>A five-reel video slot with free spins, wilds, scatters, and the option to play real Vegas odds or a looser Fun mode.</p>
+            <ul>
+              <li>Free spins with retriggers, scatter and wild symbols</li>
+              <li>1¢, 5¢, 10¢, and 25¢ denominations with bet multipliers and auto-spin</li>
+              <li>Tutorials on paylines, symbols, and volatility</li>
+            </ul>
+            <a class="more" href="/slots.html">Slots details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Learn mode -->
+    <section id="learn" class="alt">
+      <div class="wrap split">
+        <div class="reveal">
+          <span class="eyebrow">Learn Mode</span>
+          <h2>A strategy coach that sits beside you at every table</h2>
+          <p class="lede">Most casino apps are built to keep you tapping. House Edge Casino is built to make you better. Turn on Learn Mode and the app shows the mathematically optimal play on every decision, with the reasoning behind it.</p>
+          <ul class="feature-list">
+            <li>
+              <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/></svg></span>
+              <div><strong>Real-time optimal play hints</strong><span>Blackjack and video poker tell you the best move before you make it, with probabilities and expected value.</span></div>
+            </li>
+            <li>
+              <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg></span>
+              <div><strong>See the house edge on every bet</strong><span>Each game shows its edge up front, so you learn which wagers are worth making and which quietly drain a bankroll.</span></div>
+            </li>
+            <li>
+              <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 5.2L20 8l-4 4 1 5.8L12 15l-5 2.8 1-5.8-4-4 5.6-.8z"/></svg></span>
+              <div><strong>Perfect-move streaks and run stats</strong><span>Track your longest streak of optimal decisions, hands played, net result, and biggest wins per game.</span></div>
+            </li>
+            <li>
+              <span class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M8 7h8M8 11h8M8 15h5"/></svg></span>
+              <div><strong>"Understanding Casino Games" library</strong><span>Short lessons on randomness, volatility, skill versus luck, and why chasing losses never works.</span></div>
+            </li>
+          </ul>
+        </div>
+        <div class="split-media reveal d1">
+          <div class="phone">
+            <img src="/assets/img/screens/blackjack-strategy-hint.webp" srcset="/assets/img/screens/blackjack-strategy-hint-360.webp 360w, /assets/img/screens/blackjack-strategy-hint.webp 720w" sizes="(max-width: 760px) 78vw, 300px" width="720" height="1564" alt="Blackjack optimal play hint explaining why to stand on 20 with the dealer bust probability" loading="lazy" />
           </div>
         </div>
-
-        <button class="carousel-button next" id="carouselNext" aria-label="Next screenshots">›</button>
       </div>
+    </section>
 
-      <div class="carousel-dots" id="carouselDots" aria-label="Screenshot navigation"></div>
+    <!-- Screenshots -->
+    <section id="screenshots" class="tight">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Screenshots</span>
+          <h2>Take a look around the floor</h2>
+        </div>
+        <div class="scroller" aria-label="App screenshots">
+          <figure class="shot"><img src="/assets/img/screens/game-selection.webp" width="720" height="1564" alt="Game selection screen with house edge shown for each game" loading="lazy" /><figcaption>Pick a game, see its edge</figcaption></figure>
+          <figure class="shot"><img src="/assets/img/screens/blackjack-hand.webp" width="720" height="1564" alt="Blackjack hand in progress with hit, stand, double, and split buttons" loading="lazy" /><figcaption>Six-deck Vegas blackjack</figcaption></figure>
+          <figure class="shot"><img src="/assets/img/screens/blackjack-strategy-hint.webp" width="720" height="1564" alt="Blackjack optimal play popup recommending stand" loading="lazy" /><figcaption>Optimal play, explained</figcaption></figure>
+          <figure class="shot"><img src="/assets/img/screens/video-poker-hand.webp" width="720" height="1564" alt="Video poker hand with the full Jacks or Better pay table" loading="lazy" /><figcaption>9/6 Jacks or Better</figcaption></figure>
+          <figure class="shot"><img src="/assets/img/screens/video-poker-strategy-hint.webp" width="720" height="1564" alt="Video poker hint recommending to keep the high card" loading="lazy" /><figcaption>Hold recommendations</figcaption></figure>
+          <figure class="shot"><img src="/assets/img/screens/roulette-wheel.webp" width="720" height="1564" alt="American roulette wheel and betting layout with chips placed" loading="lazy" /><figcaption>Physics-based roulette</figcaption></figure>
+          <figure class="shot"><img src="/assets/img/screens/slots-spin.webp" width="720" height="1564" alt="Viva Las Slot five-reel slot machine" loading="lazy" /><figcaption>25-line video slots</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Themes -->
+    <section id="themes" class="alt">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">Themes</span>
+          <h2>Five casinos in one app</h2>
+          <p>Each theme swaps the artwork, cards, chips, slot symbols, color palette, and soundtrack. Classic Las Vegas is free. The rest come with the one-time Full Version Unlock.</p>
+        </div>
+        <div class="themes-grid">
+          <div class="theme theme-vegas free reveal"><img src="/assets/img/themes/classic-las-vegas.webp" width="640" height="274" alt="Classic Las Vegas theme logo" loading="lazy" /><span class="t-name">Classic Las Vegas</span><span class="t-tag">Included free</span></div>
+          <div class="theme theme-cyber reveal d1"><img src="/assets/img/themes/cyberpunk-neon.webp" width="640" height="274" alt="Cyberpunk Neon theme logo" loading="lazy" /><span class="t-name">Cyberpunk Neon</span><span class="t-tag">Full Version</span></div>
+          <div class="theme theme-egypt reveal d2"><img src="/assets/img/themes/ancient-egypt.webp" width="640" height="274" alt="Ancient Egypt theme logo" loading="lazy" /><span class="t-name">Ancient Egypt</span><span class="t-tag">Full Version</span></div>
+          <div class="theme theme-ocean reveal d1"><img src="/assets/img/themes/underwater-kingdom.webp" width="640" height="274" alt="Underwater Kingdom theme logo" loading="lazy" /><span class="t-name">Underwater Kingdom</span><span class="t-tag">Full Version</span></div>
+          <div class="theme theme-west reveal d2"><img src="/assets/img/themes/wild-west-saloon.webp" width="640" height="274" alt="Wild West Saloon theme logo" loading="lazy" /><span class="t-name">Wild West Saloon</span><span class="t-tag">Full Version</span></div>
+          <div class="theme reveal d3" style="display:flex;flex-direction:column;justify-content:center;text-align:center;">
+            <span class="t-name" style="font-size:1.1rem;">Built for realism</span>
+            <span class="t-tag" style="margin-top:8px;color:var(--muted);font-size:.92rem;line-height:1.55;">Professional card and table graphics, contextual haptics, full VoiceOver support, and themed music and sound effects.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why -->
+    <section id="why">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why House Edge</span>
+          <h2>Built to respect your time, your money, and your intelligence</h2>
+        </div>
+        <div class="grid grid-3">
+          <div class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <h3>Honest odds</h3>
+            <p>Outcomes are truly random and payouts match real casino rules. If a strategy works here, it is the same strategy that works on a real floor.</p>
+          </div>
+          <div class="card reveal d1">
+            <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></span>
+            <h3>No coin packs, no subscriptions</h3>
+            <p>Free to play, with a single optional $4.99 unlock. There is nothing to buy to keep playing and no pay-to-win mechanics, ever.</p>
+          </div>
+          <div class="card reveal d2">
+            <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></span>
+            <h3>No ads, no tracking</h3>
+            <p>No ad networks, no third-party analytics, and no account required. Your progress is stored on your device.</p>
+          </div>
+          <div class="card reveal">
+            <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M6 3h12v4a6 6 0 0 1-12 0z"/><path d="M6 5H3v2a3 3 0 0 0 3 3M18 5h3v2a3 3 0 0 1-3 3"/></svg></span>
+            <h3>Achievements &amp; leaderboards</h3>
+            <p>Forty-five achievements and Game Center leaderboards across every game give you something to chase besides a bankroll.</p>
+          </div>
+          <div class="card reveal d1">
+            <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></span>
+            <h3>Made for iPhone and iPad</h3>
+            <p>Native SwiftUI, haptic feedback tuned for wins, deals, and chip placement, and full VoiceOver accessibility.</p>
+          </div>
+          <div class="card reveal d2">
+            <span class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></span>
+            <h3>Responsible by design</h3>
+            <p>The app is upfront that the house always has an edge. Lessons on volatility, streaks, and time limits are part of the game, not hidden in a footer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="alt">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">Pricing</span>
+          <h2>Free to play. One price to unlock everything.</h2>
+          <p>No subscriptions, no coin purchases, no ads. Family Sharing supported.</p>
+        </div>
+        <div class="pricing">
+          <div class="plan reveal">
+            <span class="plan-name">Free</span>
+            <div class="price">$0</div>
+            <p class="sub">Everything you need to learn the games.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>All four games: blackjack, video poker, roulette, slots</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Learn Mode, tutorials, and strategy hints</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Classic Las Vegas theme</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Achievements and Game Center leaderboards</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>$100 starting bankroll, capped at $100, $25 reset when you bust</li>
+            </ul>
+            <a class="btn btn-ghost" href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" rel="noopener">Download free</a>
+          </div>
+          <div class="plan featured reveal d1">
+            <span class="plan-name">Full Version Unlock</span>
+            <div class="price">$4.99 <small>one-time, forever</small></div>
+            <p class="sub">The whole casino, with no limits.</p>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Everything in Free</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>All five themes: new visuals, cards, chips, music, and sound</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>No bankroll cap</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Reset your balance to $100 anytime</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Family Sharing supported</li>
+            </ul>
+            <a class="btn btn-primary" href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" rel="noopener">Get the app</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Questions, answered</h2>
+        </div>
+        <div class="faq reveal">
+          <details>
+            <summary>Is House Edge Casino real-money gambling?</summary>
+            <div class="a"><p>No. House Edge Casino is a simulated casino for entertainment and education only. No real money is wagered or won, and nothing in the app can be cashed out. Practice or success at social casino gaming does not imply future success at real-money gambling.</p></div>
+          </details>
+          <details>
+            <summary>Is the app free?</summary>
+            <div class="a"><p>Yes. It is free to download and play, with all four games included. An optional one-time $4.99 Full Version Unlock adds all five visual themes, removes bankroll limits, and lets you reset your balance to $100 anytime. There are no subscriptions, no coin packs, and no ads.</p></div>
+          </details>
+          <details>
+            <summary>Are the odds real?</summary>
+            <div class="a"><p>Yes. Every game uses accurate casino rules and payouts, and outcomes are truly random. Blackjack is a six-deck Vegas shoe, roulette is American double-zero, video poker is full-pay 9/6 Jacks or Better, and slots offer a realistic Vegas odds mode alongside a looser Fun mode.</p></div>
+          </details>
+          <details>
+            <summary>Which devices are supported?</summary>
+            <div class="a"><p>House Edge Casino runs on iPhone and iPad and is available on the App Store. Family Sharing is supported for the Full Version Unlock.</p></div>
+          </details>
+          <details>
+            <summary>Does the app collect my data?</summary>
+            <div class="a"><p>No. The app does not collect personal data, does not use third-party analytics or ad networks, and stores your progress locally on your device. If you enable Game Center, scores and achievements are managed by Apple. See the <a href="/privacypolicy.html">privacy policy</a>.</p></div>
+          </details>
+          <details>
+            <summary>What is the age rating?</summary>
+            <div class="a"><p>House Edge Casino is rated 17+ on the App Store for frequent or intense simulated gambling. It is intended for adults.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="tight">
+      <div class="wrap">
+        <div class="cta-banner reveal">
+          <span class="eyebrow">Ready to play smarter?</span>
+          <h2>Download House Edge Casino</h2>
+          <p>Free on the App Store for iPhone and iPad. Learn the games, master the math, and never put real money on the line.</p>
+          <div class="cta-row">
+            <a class="btn btn-store" href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" rel="noopener" aria-label="Download House Edge Casino on the App Store">
+              <img src="/assets/img/app-store-badge.svg" width="180" height="54" alt="Download on the App Store" loading="lazy" />
+            </a>
+          </div>
+          <p class="fine">Rated 17+ · Simulated gambling · No real money</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="brand" href="/"><img src="/assets/img/app-icon-160.webp" width="38" height="38" alt="" /><span>House <span class="edge">Edge</span> Casino</span></a>
+          <p>A realistic casino simulator and strategy trainer for iPhone and iPad by <a href="https://hockemalabs.com">Hockema Labs</a>.</p>
+        </div>
+        <div class="foot-col">
+          <h4>Games</h4>
+          <ul>
+            <li><a href="/blackjack.html">Blackjack</a></li>
+            <li><a href="/video-poker.html">Video Poker</a></li>
+            <li><a href="/roulette.html">Roulette</a></li>
+            <li><a href="/slots.html">Slots</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="/guides/">Strategy Guides</a></li>
+            <li><a href="/guides/blackjack-basic-strategy.html">Blackjack Basic Strategy</a></li>
+            <li><a href="/#learn">Learn Mode</a></li>
+            <li><a href="/#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" rel="noopener">App Store</a></li>
+            <li><a href="/support.html">Support</a></li>
+            <li><a href="/privacypolicy.html">Privacy Policy</a></li>
+            <li><a href="https://hockemalabs.com">Hockema Labs</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="disclaimer">House Edge Casino is for entertainment and educational purposes only. It is a simulated gambling experience: no real money is wagered or won, and the app does not offer real-money gambling. Intended for users 17+. Practice or success at social casino gaming does not imply future success at real-money gambling. Apple, the Apple logo, iPhone, iPad, Game Center, and App Store are trademarks of Apple Inc.</p>
+      <div class="foot-bottom">
+        <span>© <span data-year>2026</span> <a href="https://hockemalabs.com">Hockema Labs LLC</a>. All rights reserved.</span>
+        <span>Springfield, Oregon, USA</span>
+      </div>
     </div>
+  </footer>
 
-    <h2>About the Game</h2>
-    <p>
-      Master the casino floor without risking a dime. House Edge Casino is a realistic
-      casino simulator designed to help you learn strategy, understand probabilities,
-      and play smarter.
-    </p>
-
-    <h2>Games Included</h2>
-    <ul>
-      <li><strong>Blackjack</strong> — Vegas-style rules with real-time strategy guidance.</li>
-      <li><strong>Slots</strong> — 5-reel video slots with free spins and bonus features.</li>
-      <li><strong>Roulette</strong> — American roulette with full betting options.</li>
-      <li><strong>Video Poker</strong> — Classic hands with optimal strategy.</li>
-    </ul>
-
-    <h2>Features</h2>
-    <ul>
-      <li>Learn optimal strategies with in-game hints.</li>
-      <li>Understand house edge and probabilities.</li>
-      <li>Track progress and improve your gameplay.</li>
-      <li>Game Center leaderboards and achievements.</li>
-      <li>No real money — purely for fun and education.</li>
-    </ul>
-
-    <div style="text-align: center; margin-top: 24px;">
-      <a href="https://apps.apple.com/us/app/house-edge-casino/id6758695813" target="_blank" rel="noopener noreferrer">
-        <img
-          src="images/downloadontheappstore.svg"
-          alt="Download on the App Store"
-          style="height: 60px; width: auto;"
-        >
-      </a>
-    </div>
-
-    <div class="buttons">
-      <a class="button primary" href="support.html">Support</a>
-      <a class="button secondary" href="privacypolicy.html">Privacy Policy</a>
-    </div>
-
-    <footer>
-      © 2026 <a href="https://hockemalabs.com">Hockema Labs LLC</a>
-    </footer>
-  </div>
-
-  <script>
-    (function () {
-      const viewport = document.getElementById('carouselViewport');
-      const track = document.getElementById('carouselTrack');
-      const cards = Array.from(track.children);
-      const prevButton = document.getElementById('carouselPrev');
-      const nextButton = document.getElementById('carouselNext');
-      const dotsContainer = document.getElementById('carouselDots');
-
-      const gap = 16;
-      const maxVisible = 3;
-      const minCardWidth = 220;
-      const advanceEveryMs = 4000;
-      const restartDelayMs = 5000;
-
-      let visibleCount = 1;
-      let currentIndex = 0;
-      let maxIndex = 0;
-      let timer = null;
-      let restartTimer = null;
-
-      function getVisibleCount() {
-        const viewportWidth = viewport.clientWidth;
-        const possible = Math.floor((viewportWidth + gap) / (minCardWidth + gap));
-        return Math.max(1, Math.min(maxVisible, possible));
-      }
-
-      function createDots() {
-        dotsContainer.innerHTML = '';
-        for (let i = 0; i <= maxIndex; i += 1) {
-          const dot = document.createElement('button');
-          dot.className = 'carousel-dot';
-          dot.type = 'button';
-          dot.setAttribute('aria-label', `Go to screenshot set ${i + 1}`);
-          dot.addEventListener('click', () => {
-            currentIndex = i;
-            updatePosition(true);
-            handleManualInteraction();
-          });
-          dotsContainer.appendChild(dot);
-        }
-      }
-
-      function updateDots() {
-        const dots = Array.from(dotsContainer.children);
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentIndex);
-        });
-      }
-
-      function updateButtons() {
-        if (maxIndex === 0) {
-          prevButton.disabled = true;
-          nextButton.disabled = true;
-          return;
-        }
-        prevButton.disabled = false;
-        nextButton.disabled = false;
-      }
-
-      function layoutCarousel() {
-        visibleCount = getVisibleCount();
-        const viewportWidth = viewport.clientWidth;
-        const cardWidth = (viewportWidth - gap * (visibleCount - 1)) / visibleCount;
-
-        cards.forEach(card => {
-          card.style.width = `${cardWidth}px`;
-        });
-
-        maxIndex = Math.max(0, cards.length - visibleCount);
-
-        if (currentIndex > maxIndex) {
-          currentIndex = maxIndex;
-        }
-
-        createDots();
-        updatePosition(false);
-        updateButtons();
-      }
-
-      function updatePosition(animated = true) {
-        track.style.transition = animated ? 'transform 0.6s ease' : 'none';
-        const cardWidth = cards[0].getBoundingClientRect().width;
-        const offset = currentIndex * (cardWidth + gap);
-        track.style.transform = `translateX(-${offset}px)`;
-
-        updateDots();
-
-        if (!animated) {
-          requestAnimationFrame(() => {
-            track.style.transition = 'transform 0.6s ease';
-          });
-        }
-      }
-
-      function nextSlide() {
-        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-        updatePosition(true);
-      }
-
-      function prevSlide() {
-        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
-        updatePosition(true);
-      }
-
-      function stopAutoScroll() {
-        if (timer) {
-          clearInterval(timer);
-          timer = null;
-        }
-        if (restartTimer) {
-          clearTimeout(restartTimer);
-          restartTimer = null;
-        }
-      }
-
-      function startAutoScroll() {
-        stopAutoScroll();
-        if (maxIndex === 0) {
-          return;
-        }
-        timer = setInterval(nextSlide, advanceEveryMs);
-      }
-
-      function handleManualInteraction() {
-        stopAutoScroll();
-        restartTimer = setTimeout(() => {
-          startAutoScroll();
-        }, restartDelayMs);
-      }
-
-      prevButton.addEventListener('click', () => {
-        prevSlide();
-        handleManualInteraction();
-      });
-
-      nextButton.addEventListener('click', () => {
-        nextSlide();
-        handleManualInteraction();
-      });
-
-      viewport.addEventListener('mouseenter', stopAutoScroll);
-      viewport.addEventListener('mouseleave', startAutoScroll);
-      viewport.addEventListener('touchstart', stopAutoScroll, { passive: true });
-      viewport.addEventListener('touchend', () => {
-        handleManualInteraction();
-      }, { passive: true });
-
-      window.addEventListener('resize', layoutCarousel);
-
-      document.addEventListener('keydown', (event) => {
-        if (!viewport.matches(':hover')) return;
-        if (event.key === 'ArrowLeft') {
-          prevSlide();
-          handleManualInteraction();
-        } else if (event.key === 'ArrowRight') {
-          nextSlide();
-          handleManualInteraction();
-        }
-      });
-
-      layoutCarousel();
-      startAutoScroll();
-    })();
-  </script>
+  <script src="/assets/js/site.js" defer></script>
 </body>
 </html>
