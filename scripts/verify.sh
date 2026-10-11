@@ -32,8 +32,9 @@ grep -rl 'mailto:' --include=*.html . | while read f; do
 done
 grep -rho 'apps\.apple\.com[^"]*' --include=*.html . | sort -u | grep -v 'id6758695813' | while read bad; do err "unexpected App Store URL: $bad"; done
 
-echo "== Forbidden language (real-money implications)"
-pattern='real cash|win real money|real-money winnings|cash out|withdraw your winnings|guaranteed to win|get rich|sweepstakes'
+echo "== Forbidden language (real-money implications and promises of winning)"
+# Real-money implications, plus promises or implied outcomes we never make.
+pattern='real cash|win real money|real-money winnings|cash out|withdraw your winnings|get rich|sweepstakes|guarantee[ds]? (you|a|to) win|you (will|.ll) win|win more|win big|beat the (house|casino|dealer|odds)|overcome the house edge|can.t lose|never lose|make money|turn a profit|profitable system|winning (system|strategy|formula)|sure thing|works every time|proven system'
 for f in $pages; do
   if grep -iqE "$pattern" "$f"; then
     err "$f contains forbidden language:"; grep -ioE "$pattern" "$f" | sort -u | sed 's/^/      /'

@@ -4,7 +4,33 @@ This document drives the scheduled weekly session that keeps houseedgecasino.com
 
 ## Goal
 
-Every week, ship one meaningful improvement that helps people find the site and decide to download House Edge Casino. Quality over quantity: one well-written, accurate page beats three thin ones.
+Every week, write a new article or substantively update an existing one that genuinely interests the player base: people who enjoy casino games and want to understand them better. Each article teaches a real technique or concept and shows, honestly, how House Edge Casino can be used to practice or learn it. The article is the main weekly deliverable; the freshness check and small site improvements ride along with it. Quality over quantity: one well-written, accurate article beats three thin ones.
+
+## Article standards
+
+**Audience.** Casual and intermediate casino players, and people curious about the games before a trip. Assume intelligence, not expertise. Explain the math; do not hide it.
+
+**Angle.** Every article has one concrete thing the reader can practice: a strategy decision, a bet type, a pay-table skill, a bankroll habit, a misconception to unlearn. Then show how to practice it in the app, naming the actual feature: Learn Mode hints, the strategy chart, the perfect-move streak, Vegas vs Fun odds, the "Understanding Casino Games" lessons, run statistics, tutorials. The tie-in is "practice until it is automatic, with nothing at risk," never "use the app and you will win."
+
+**Length and shape.** 900 to 1,600 words. One H1, descriptive H2s, tables for odds and pay tables, a short FAQ, a download callout. Follow the page recipe below.
+
+**Voice.** Direct, warm, specific. No hype, no exclamation marks, no filler.
+
+## Claims policy (read this twice)
+
+The site must never make a false statement, give bad advice, or promise an outcome. Concretely:
+
+- **Never promise results.** No "you'll win more," "beat the house," "beat the casino," "come out ahead," "turn the odds in your favor," "guaranteed," "can't lose," or any phrasing that implies playing better leads to profit. The honest framing is: optimal play lowers the house edge, loses less over time, and makes the game last longer. Every game in the app still favors the house, and articles say so when relevant.
+- **Never present a betting system as effective.** Martingale, Fibonacci, d'Alembert, "due" numbers, hot and cold machines, streak betting: these do not change expected value. They may be explained only to show why they fail.
+- **Card counting:** it may be described as a real technique with a thin edge under specific real-world conditions, but the app does not teach counting, so do not sell it as something to practice there. Basic strategy is the foundation and that is what the app coaches.
+- **Advice must be the standard, published, math-based advice** (basic strategy charts, Jacks or Better hold rankings, true odds vs payouts). If a figure cannot be stated with confidence, leave it out rather than guess. Cite the rule set the figure depends on (decks, dealer soft 17, pay table).
+- **Bankroll advice is conservative:** play with money you can afford to lose, set a session budget and time limit, never chase losses, treat the cost as entertainment. Never suggest bet sizing or play duration as a way to recover or profit.
+- **No encouragement to gamble more, longer, or with real money.** The app is a simulator for practice and entertainment; the site does not funnel people to real-money play.
+- **App claims must match the app.** Only describe features, rules, prices, and balances that exist in the House-Edge-Casino repo today.
+- **No fabricated social proof:** no ratings, review counts, download numbers, quotes, or testimonials.
+- **Keep the disclaimer** in the footer of every page and the 17+ note. Articles about any game include at least one sentence that the house always has an edge.
+
+The independent fact-check reviewer in Gate 3 is told to hunt specifically for violations of this policy. Fix every one it finds.
 
 ## Ground rules
 
@@ -37,7 +63,7 @@ Three independent gates. All three must pass.
 
 **Gate 2: render check.** Serve locally with `python3 -m http.server 8765` and use Playwright/Chromium (`require('playwright')`, `NODE_PATH=/opt/node-tools/node_modules` if needed) to load every page you changed at 1400px and 390px widths with `networkidle`. Fail on any console error, any 4xx/5xx response, or any horizontal overflow at 390px (`document.documentElement.scrollWidth > 390`). Take a full-page screenshot of each and look at it. Text overlapping, missing images, or an empty section is a fail.
 
-**Gate 3: independent fact check.** Spawn a separate reviewer agent (the Agent tool) with a fresh context. Give it only: the `git diff` of your changes, the path to the app repo, and this instruction: "You are fact-checking marketing copy for an iOS app before it is published. For every factual claim about the app in this diff (rules, odds, pay tables, prices, balances, themes, features, device support, counts), find the evidence in the app repo (README.md, Swift source under 'House Edge Casino/', theme.json files, the Xcode project) and quote the file and line. For every strategy or math claim (house edges, probabilities, basic strategy plays, payouts), verify it against the standard published figures you know. Report a numbered list: each claim, VERIFIED with evidence, or UNVERIFIED/WRONG with what the evidence actually says. Also flag anything that implies real-money gambling, targets minors, or makes promises about winning. Be adversarial. Do not approve a claim you could not trace." Every UNVERIFIED or WRONG item must be fixed or removed, then re-run the reviewer on the new diff until it reports zero problems. Do not skip this gate for "small" changes; a wrong number on a strategy page is exactly the kind of error that damages trust.
+**Gate 3: independent fact check.** Spawn a separate reviewer agent (the Agent tool) with a fresh context. Give it only: the `git diff` of your changes, the path to the app repo, and this instruction: "You are fact-checking marketing copy for an iOS app before it is published. For every factual claim about the app in this diff (rules, odds, pay tables, prices, balances, themes, features, device support, counts), find the evidence in the app repo (README.md, Swift source under 'House Edge Casino/', theme.json files, the Xcode project) and quote the file and line. For every strategy or math claim (house edges, probabilities, basic strategy plays, payouts), verify it against the standard published figures you know. Report a numbered list: each claim, VERIFIED with evidence, or UNVERIFIED/WRONG with what the evidence actually says. Separately, review the advice itself as a gambling-math expert would: flag any recommendation that is wrong, that presents a betting system or superstition as effective, that encourages gambling more or longer, or that a careful expert would call harmful. Flag every sentence that promises or implies the reader will win, profit, beat the house, or come out ahead, including soft versions like 'turn the odds in your favor.' Flag anything that implies real-money gambling or targets minors. Be adversarial. Do not approve a claim you could not trace." Every UNVERIFIED or WRONG item must be fixed or removed, then re-run the reviewer on the new diff until it reports zero problems. Do not skip this gate for "small" changes; a wrong number on a strategy page is exactly the kind of error that damages trust.
 
 If any gate cannot be run (tooling missing, agent unavailable), do not push. Commit to a branch `weekly/YYYY-MM-DD` instead, push that branch, and report that the gate could not run.
 
@@ -65,7 +91,15 @@ If any gate cannot be run (tooling missing, agent unavailable), do not push. Com
 12. Guide: **Should you take even money on a blackjack?**
 13. Guide: **Soft hands in blackjack, explained**
 14. Guide: **Slots: Vegas odds vs Fun mode, what the app changes and why**
-15. Ongoing after the backlog is exhausted: refresh the oldest guide with new sections, improve internal linking, tighten meta descriptions, add FAQ entries from real support questions in `hockemalabs/houseedgecasino-support` issues.
+15. Guide: **How to practice blackjack splits and doubles** (the decisions players get wrong most, drilled with Learn Mode hints on).
+16. Guide: **Reading a video poker pay table in ten seconds** (what each row means, how to compare machines, why max coins matter).
+17. Guide: **Inside vs outside roulette bets for beginners** (volatility, bankroll life, the same edge either way).
+18. Guide: **What a perfect-move streak actually measures** (decision quality vs results, variance, why a long streak can still lose).
+19. Guide: **Why "dealer hits soft 17" matters** (what it changes in the chart and in the edge).
+20. Guide: **Slot paylines explained with the app's 25-line machine** (how lines pay, scatters, wilds, free spins).
+21. Guide: **Setting a session budget and time limit** (ties to the app's Set a Budget, Time Limits, and Speed of Play lessons).
+22. Guide: **Insurance and even money in blackjack: the same bad bet in two outfits.**
+23. Ongoing after the backlog is exhausted: refresh the oldest guide with new sections, improve internal linking, tighten meta descriptions, add FAQ entries from real support questions in `hockemalabs/houseedgecasino-support` issues.
 
 ## Things to never do
 
