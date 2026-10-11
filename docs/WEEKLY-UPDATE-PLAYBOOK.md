@@ -12,7 +12,7 @@ Every week, ship one meaningful improvement that helps people find the site and 
 2. **Compliance.** The app is a simulated casino rated 17+. Keep the disclaimer in the footer on every page. Never imply real-money winnings, never target minors, never use language like "win real cash." Keep "no real money" visible on landing pages.
 3. **Stay in the design system.** Use the existing classes in `assets/css/site.css`. Add new CSS only when a component genuinely does not exist. Do not change the color tokens or fonts.
 4. **Static site.** No build tools, frameworks, trackers, or third-party scripts. Images go in `assets/img/` as optimized WebP (ImageMagick `convert ... -resize 720x -quality 82`). Keep each new image under 120 KB.
-5. **One branch, one PR, never push to main.** Branch from `main` as `weekly/YYYY-MM-DD`, commit, push, open a pull request titled `Weekly update: <what changed>`. The PR body lists what changed and why, plus the SEO target. Do not merge.
+5. **Push straight to `main`, but only after the double check passes.** The owner does not review these updates, so the verification gate below is the review. A change that fails any part of it does not ship that week.
 6. **Log it.** Append an entry to `docs/UPDATE-LOG.md` in the same PR so the next session knows what has been done.
 7. **Do not repeat.** Read `docs/UPDATE-LOG.md` first and skip anything already done.
 
@@ -25,8 +25,21 @@ Every week, ship one meaningful improvement that helps people find the site and 
    - Run a link check: every internal `href`/`src` must resolve to a file. Fix broken ones.
    - If any page changed, update its `<lastmod>` in `sitemap.xml`.
 4. **Pick the next backlog item** (below, in order, skipping done items) and build it completely.
-5. **Verify** by serving locally (`python3 -m http.server`) and rendering with Playwright/Chromium at 1400px and 390px widths. Fix anything broken before pushing.
-6. Commit, push the branch, open the PR, append to the update log.
+5. Append the entry to `docs/UPDATE-LOG.md`.
+6. **Run the double check** (next section). Fix everything it finds and run it again until it is clean.
+7. Commit on `main`, `git pull --rebase origin main`, run `bash scripts/verify.sh` once more, then `git push origin main`. GitHub Pages deploys within a few minutes. Load https://houseedgecasino.com/ and the new page afterward to confirm they are live and not broken; if the live site is broken, fix forward immediately.
+
+## The double check (mandatory before every push)
+
+Three independent gates. All three must pass.
+
+**Gate 1: mechanical checks.** Run `bash scripts/verify.sh` from the repo root. It checks every page for the disclaimer, the 17+ note, the App Store link, canonical and description tags, exactly one H1, the shared nav and footer; that all internal links and assets resolve; that the sitemap matches the pages; that JSON-LD parses; that no page contains real-money language or unverifiable rating/download figures; that images are optimized; and that the design tokens are untouched. Exit code 0 is a pass.
+
+**Gate 2: render check.** Serve locally with `python3 -m http.server 8765` and use Playwright/Chromium (`require('playwright')`, `NODE_PATH=/opt/node-tools/node_modules` if needed) to load every page you changed at 1400px and 390px widths with `networkidle`. Fail on any console error, any 4xx/5xx response, or any horizontal overflow at 390px (`document.documentElement.scrollWidth > 390`). Take a full-page screenshot of each and look at it. Text overlapping, missing images, or an empty section is a fail.
+
+**Gate 3: independent fact check.** Spawn a separate reviewer agent (the Agent tool) with a fresh context. Give it only: the `git diff` of your changes, the path to the app repo, and this instruction: "You are fact-checking marketing copy for an iOS app before it is published. For every factual claim about the app in this diff (rules, odds, pay tables, prices, balances, themes, features, device support, counts), find the evidence in the app repo (README.md, Swift source under 'House Edge Casino/', theme.json files, the Xcode project) and quote the file and line. For every strategy or math claim (house edges, probabilities, basic strategy plays, payouts), verify it against the standard published figures you know. Report a numbered list: each claim, VERIFIED with evidence, or UNVERIFIED/WRONG with what the evidence actually says. Also flag anything that implies real-money gambling, targets minors, or makes promises about winning. Be adversarial. Do not approve a claim you could not trace." Every UNVERIFIED or WRONG item must be fixed or removed, then re-run the reviewer on the new diff until it reports zero problems. Do not skip this gate for "small" changes; a wrong number on a strategy page is exactly the kind of error that damages trust.
+
+If any gate cannot be run (tooling missing, agent unavailable), do not push. Commit to a branch `weekly/YYYY-MM-DD` instead, push that branch, and report that the gate could not run.
 
 ## Page recipe for a new strategy guide
 
@@ -60,4 +73,4 @@ Every week, ship one meaningful improvement that helps people find the site and 
 - Never remove the footer disclaimer or the 17+ note.
 - Never change the App Store link (`id6758695813`) or the support email.
 - Never commit raw screenshots from the app repo without resizing and converting to WebP.
-- Never merge your own PR or push to `main`.
+- Never push to `main` with any gate of the double check failing or unrun.

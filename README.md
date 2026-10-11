@@ -23,6 +23,7 @@ assets/css/site.css             All styles (design tokens at the top)
 assets/js/site.js               Nav toggle, scroll reveal, footer year
 assets/img/                     Optimized artwork exported from the app repo
 docs/WEEKLY-UPDATE-PLAYBOOK.md  How the weekly content/SEO update works
+scripts/verify.sh               Mechanical pre-push checks (run before every push to main)
 docs/UPDATE-LOG.md              Running log of what each weekly update did
 ```
 
